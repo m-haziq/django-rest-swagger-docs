@@ -36,3 +36,11 @@ Now sync database and create database user:
 
 `python manage.py migrate`
 `python manage.py createsuperuser`
+
+Now making a class based view as:
+
+Make a simple serializer at `demo/cbv_demo/serializers.py` with code below:
+
+
+Make a simple view at `demo/cbv_demo/views.py` with code below:
+
