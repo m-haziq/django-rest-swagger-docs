@@ -1,9 +1,6 @@
-from django.conf.urls import url
-from django.contrib import admin
-
-from cbv_demo.views import UserViewSet
+from django.conf.urls import url, include
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^cbv_demo/user', UserViewSet.as_view()),
+    url(r'^cbv/', include('demo.cbv_demo.urls')),
+    url(r'^fbv/', include('demo.fbv_demo.urls')),
 ]
