@@ -1,8 +1,8 @@
 from django.conf.urls import url
+from .views import save_medical, get_medical
 
-from .views import save_contact, get_contact
 
 urlpatterns = [
-    url(r'^save_contact', save_contact, name='save_contact'),
-    url(r'^get_contact', get_contact, name='get_contact'),
+    url(r'^save_medical', save_medical, name='save_contact'),
+    url(r'^get_medical', get_medical, name='get_contact'),
 ]
