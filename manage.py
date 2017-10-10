@@ -1,4 +1,4 @@
-#!/home/mhaziq/codebase/django-rest-swagger-docs/env/bin python
+#!/usr/bin/env python
 import os
 import sys
 
