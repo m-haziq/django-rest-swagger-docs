@@ -6,7 +6,6 @@ from rest_framework import status
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated, ))
 def save_medical(request):
 
     name = request.POST.get('name')
@@ -22,6 +21,5 @@ def save_medical(request):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated, ))
 def get_medical(request):
     return Response(Medical.objects.all().values(), status=status.HTTP_200_OK)
