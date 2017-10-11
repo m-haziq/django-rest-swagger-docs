@@ -1,14 +1,13 @@
-from rest_framework.views import APIView
 from demo.cbv_demo.serializers import ContactDataSerializer
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import Contact
-from rest_framework import status
+from rest_framework import status , generics
 
 
-class ContactData(APIView):
+class ContactData(generics.GenericAPIView):
     serializer_class = ContactDataSerializer
-    permission_classes = IsAuthenticated
+    permission_classes = [IsAuthenticated,]
 
 
     def get(self, request, format=None):
