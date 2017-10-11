@@ -47,22 +47,6 @@ INSTALLED_APPS = [
 
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     # This must go first because DRF token auth won't punt to other
-    #     # auth providers on invalid token
-    #     'deeparmor_mgmt.service.device_token_authentication.DeviceTokenAuthentication',
-    #     'rest_framework.authentication.TokenAuthentication',
-    # ),
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-        'rest_framework_swagger.renderers.SwaggerUIRenderer'
-    ),
     # Parser classes priority-wise for Swagger
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.FormParser',
@@ -73,12 +57,13 @@ REST_FRAMEWORK = {
 
 
 SWAGGER_SETTINGS = {
-    # 'SECURITY_DEFINITIONS': {
-    #     'basic': {
-    #         'type': 'basic',
-    #     }
-    # },
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic',
+        }
+    },
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
