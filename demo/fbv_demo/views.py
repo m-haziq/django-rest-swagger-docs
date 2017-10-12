@@ -7,7 +7,23 @@ from rest_framework import status
 
 @api_view(['POST'])
 def save_medical(request):
-
+    # ----- YAML below for Swagger -----
+    """
+    description: This API deletes/uninstalls a device.
+    parameters:
+      - name: name
+        type: string
+        required: true
+        location: form
+      - name: bloodgroup
+        type: string
+        required: true
+        location: form
+      - name: birthmark
+        type: string
+        required: true
+        location: form
+    """
     name = request.POST.get('name')
     bloodgroup = request.POST.get('bloodgroup')
     birthmark = request.POST.get('birthmark')
