@@ -1,5 +1,9 @@
 # Comprehensive approach to django-rest-swagger 2 using both FBV and CBV
 
+This project provides a beginner's guide to django rest swagger 2 with
+function based views as well as class based views. It provides  building the 
+project from scratch. For those who want to integrate Django Rest Swagger into
+an existing project, head straight to: [Integrating Django Rest Swagger](https://github.com/m-haziq/django-rest-swagger-docs#integrating-django-rest-swagger) .
 
 ## Getting Started
 Before we start, we need this to be installed:
