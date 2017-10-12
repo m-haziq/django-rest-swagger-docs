@@ -1,0 +1,38 @@
+{% extends "rest_framework_swagger/base.html" %}
+
+{# TO Customizer Swagger UI #}
+
+{% block header %}
+    <div id='header' style="background-color: #000000;">
+        <div class="swagger-ui-wrap">
+            {% load staticfiles%}
+            <a id="logo" href="http://swagger.io"><img class="logo__img" alt="swagger" height="30" width="30" src="{% static 'rest_framework_swagger/images/logo_small.png' %}" /><span class="logo__title">swagger</span></a>
+            <form id='api_selector'>
+                <input id="input_baseUrl" name="baseUrl" type="hidden"/>
+                {% if USE_SESSION_AUTH %}
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}
+                <div class="input">
+                    {% block user_context_message %}
+                    {# Override this block to customize #}
+                    Hello, {{ request.user }}
+                    {% endblock %}
+                </div>
+                {% endif %}
+                {% block extra_nav %}
+                {# Override this block to add more buttons, content to nav bar. #}
+                {% endblock %}
+                {% endif %}
+
+                {% if USE_SESSION_AUTH %}
+                {% if request.user.is_authenticated %}
+                <div class='input'><a id="auth" class="header__btn" href="{{ LOGOUT_URL }}?next={{ request.path }}" data-sw-translate>Django Logout</a></div>
+                {% else %}
+                <div class='input'><a id="auth" class="header__btn" href="{{ LOGIN_URL }}?next={{ request.path }}" data-sw-translate>Django Login</a></div>
+                {% endif %}
+                {% endif %}
+                <div id='auth_container'></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
