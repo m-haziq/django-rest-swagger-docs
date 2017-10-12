@@ -574,4 +574,5 @@ format `@permission_classes((IsAuthenticated, ))`.
 
 This repository is to help all those programmers facing issues
 using `django-rest-swagger 2`. If you like this effort, please like and share this with others. 
-If you have any suggestions, comment here or approach me directly m_haziq@outlook.com . I would love to hear from you.
+If you have any suggestions, comment here or approach me directly [@contacthaziq](https://twitter.com/contacthaziq) . 
+I would love to hear from you.
