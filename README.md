@@ -1,11 +1,11 @@
 # Comprehensive approach to django-rest-swagger 2 using both FBV and CBV
 
 
-##Getting Started
+## Getting Started
 Before we start, we need this to be installed:
 - [Python3](https://www.python.org/downloads/)
 
-##Project Setup
+## Project Setup
 Start by making the project as in [DRF official docs](http://www.django-rest-framework.org/tutorial/quickstart/):
 ```
 mkdir django-rest-swagger-docs
@@ -43,7 +43,7 @@ Now sync database and create database user:
 python manage.py migrate
 python manage.py createsuperuser
 ```
-#####Making class based views:
+##### Making class based views:
 
 Make a simple model at `demo/cbv_demo/models.py` with code below:
 
@@ -108,7 +108,7 @@ urlpatterns = [
 ]
 ```
 
-#####Making function based views:
+##### Making function based views:
 
 Make a simple model at `demo/fbv_demo/models.py` with code below:
 
@@ -225,7 +225,7 @@ REST_FRAMEWORK = {
 
 ```
 
-####Using `get_swagger_view` the shortcut method:
+#### Using `get_swagger_view` the shortcut method:
 Make swagger schema view in `demo/urls.py` and assign it a url as :
 
 ```cython
@@ -247,7 +247,7 @@ Using shortcut method can let us into following issues:
 
 In order to acheive these functionalities, we ll go for its advance usage.
 
-####Advance Usage:
+#### Advance Usage:
 For finer control and to make swagger more customizable
 we write swagger schema view manually and to document parameters 
 for function based views, we override SchameGenerator of `rest_framework`
@@ -339,7 +339,7 @@ class SwaggerSchemaView(APIView):
         return Response(schema)
 ```
 
-######CustomSchemaGenerator Details:
+###### CustomSchemaGenerator Details:
 This class overrides the default DRF SchemaGenerator so that it first 
 checks if the view has `.__doc__` inside it, if available it uses this YAML
 to make parameter fields, otherwise it looks for serializers.
@@ -347,7 +347,7 @@ to make parameter fields, otherwise it looks for serializers.
 So in this way we acheive the functionality of Django Rest Swagger (version 1)
 which supported YAML docstrings as well.
 
-######SwaggerSchemaView Details:
+###### SwaggerSchemaView Details:
 The view made for swagger, which calls CustomSchemaGenerator
 to create the schema instead of default SchemaGenerator.
 
@@ -406,7 +406,7 @@ Go to swagger url :
 > You will be able to see input parameters fields for 
 *save_medical* POST API as well.
 
-####Customize Swagger UI:
+#### Customize Swagger UI:
 
 Swagger UI can be customized to some [extent](https://django-rest-swagger.readthedocs.io/en/latest/customization/),
 which is sufficient for a normal user, Follow these simple steps:
@@ -474,7 +474,7 @@ TEMPLATES = [
 
 >You ll be able to see custom BLACK header.
 
-#####Some add-ons that may help:
+##### Some add-ons that may help:
 
 Django Rest Swagger provide much customization, most of which is explained indepth
 in its [Official Doc](https://django-rest-swagger.readthedocs.io/en/latest/) .
@@ -482,7 +482,7 @@ in its [Official Doc](https://django-rest-swagger.readthedocs.io/en/latest/) .
 Few mostly used customization is explained here for ease. Add SWAGGER_SETTINGS in 
 `demo/settings.py` to provide custom settings:
 
-######Swagger Login methods:
+###### Swagger Login methods:
 
 You can login to swagger by using button **Authorize** in the header of swagger UI.
 
@@ -510,7 +510,7 @@ SWAGGER_SETTINGS = {
 }
 ```
 
-######Customize location of parameters defined in DOCSTRING:
+###### Customize location of parameters defined in DOCSTRING:
 
 You can customize YAML parameters, the most important is location
 that helps you with passing the data to API in different forms.
@@ -526,7 +526,7 @@ Other location options include `location: post` and `location: path`
 
 
 
-#####Possible issues you may face, and their possible solution:
+##### Possible issues you may face, and their possible solution:
 
 Since the release of version 2 of django-rest-swagger, various issues arise
 because this version is fundamentally different from previous versions,
@@ -566,7 +566,7 @@ format `@permission_classes((IsAuthenticated, ))`.
 {% endblock %}
 ```
 
-##End Note:
+## End Note:
 
 This repository is to help all those programmers facing issues
 using `django-rest-swagger 2`. If you like this effort, please like and share this with others. 
