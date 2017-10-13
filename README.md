@@ -53,6 +53,8 @@ Make a simple model at `demo/cbv_demo/models.py` with code below:
 
 ```cython
 from django.db import models
+
+
 class Contact(models.Model):
     name = models.CharField(max_length=22)
     phone = models.CharField(max_length=22)
@@ -64,6 +66,8 @@ Make a simple serializer at `demo/cbv_demo/serializers.py` with code below:
 ```cython
 from rest_framework import serializers
 from .models import Contact
+
+
 class ContactDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
@@ -84,12 +88,10 @@ class ContactData(generics.GenericAPIView):
     serializer_class = ContactDataSerializer
     permission_classes = [IsAuthenticated,]
 
-
     def get(self, request, format=None):
         contacts = Contact.objects.all()
         serializer = ContactDataSerializer(contacts, many=True)
         return Response(serializer.data)
-
 
     def post(self, request, format=None):
         serializer = ContactDataSerializer(data=request.data)
@@ -180,6 +182,8 @@ INSTALLED_APPS = [
 Now add urls of both apps to `demo/urls.py`:
 ```cython
 from django.conf.urls import url, include
+
+
 urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^cbv/', include('demo.cbv_demo.urls')),
@@ -235,6 +239,8 @@ Make swagger schema view in `demo/urls.py` and assign it a url as :
 ```cython
 from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title='Demo Swagger API')
+
+
 urlpatterns = [
     ...
     url(r'^swagger/', schema_view),
@@ -266,7 +272,6 @@ from rest_framework.views import APIView
 from rest_framework_swagger import renderers
 from rest_framework.schemas import SchemaGenerator
 from urllib.parse import urljoin
-
 import yaml
 import coreapi
 
@@ -327,7 +332,6 @@ class CustomSchemaGenerator(SchemaGenerator):
 
 
 class SwaggerSchemaView(APIView):
-
     exclude_from_schema = True
     permission_classes = [AllowAny]
     renderer_classes = [
@@ -336,10 +340,8 @@ class SwaggerSchemaView(APIView):
     ]
 
     def get(self, request):
-
         generator = CustomSchemaGenerator()
         schema = generator.get_schema(request=request)
-
         return Response(schema)
 ```
 
@@ -366,6 +368,8 @@ Now change `demo/urls.py` to point swagger url to this SwaggerSchemaView as:
 
 ```cython
 from .swagger_schema import SwaggerSchemaView
+
+
 urlpatterns = [
     ...
     url(r'^swagger/', SwaggerSchemaView.as_view()),
@@ -562,7 +566,7 @@ format `@permission_classes((IsAuthenticated, ))`.
 {% block header %}
     <div id='header' style="background-color: #000000;">
         <div class="swagger-ui-wrap">
-            {% load staticfiles%}
+            {% load staticfiles %}
             ...
             ...
         </div>
