@@ -229,7 +229,7 @@ REST_FRAMEWORK = {
 
 ```
 
-#### Using `get_swagger_view` the shortcut method:
+### Using `get_swagger_view` the shortcut method:
 Make swagger schema view in `demo/urls.py` and assign it a url as :
 
 ```cython
@@ -251,7 +251,7 @@ Using shortcut method can let us into following issues:
 
 In order to acheive these functionalities, we ll go for its advance usage.
 
-#### Advance Usage:
+### Advance Usage:
 For finer control and to make swagger more customizable
 we write swagger schema view manually and to document parameters 
 for function based views, we override SchameGenerator of `rest_framework`
@@ -478,7 +478,7 @@ TEMPLATES = [
 
 >You ll be able to see custom BLACK header.
 
-##### Some add-ons that may help:
+#### Some add-ons that may help:
 
 Django Rest Swagger provide much customization, most of which is explained indepth
 in its [Official Doc](https://django-rest-swagger.readthedocs.io/en/latest/) .
@@ -486,7 +486,7 @@ in its [Official Doc](https://django-rest-swagger.readthedocs.io/en/latest/) .
 Few mostly used customization is explained here for ease. Add SWAGGER_SETTINGS in 
 `demo/settings.py` to provide custom settings:
 
-###### Swagger Login methods:
+##### Swagger Login methods:
 
 You can login to swagger by using button **Authorize** in the header of swagger UI.
 
@@ -514,23 +514,23 @@ SWAGGER_SETTINGS = {
 }
 ```
 
-###### Customize location of parameters defined in DOCSTRING:
+##### Customize location of parameters defined in DOCSTRING:
 
 You can customize YAML parameters, the most important is location
 that helps you with passing the data to API in different forms.
 
-- **location: form** , when accessing data as `request.POST['key']`
+- `location: form` , to access data as `request.POST['key']`
 
-- **location: body** , when accessing data as `request.body` , you may have to
+- `location: body` , to access data as `request.body` , you may have to
 add `JSON_EDITOR: False` in `SWAGGER_SETTINGS` in `demo/settings.py`.
 
-- **location: query** , when accessing data as `request.GET['key']` 
+- `location: query` , to access data as `request.GET['key']` 
 
 Other location options include `location: post` and `location: path`
 
 
 
-##### Possible issues you may face, and their possible solution:
+### Common issues and their solution:
 
 Since the release of version 2 of django-rest-swagger, various issues arise
 because this version is fundamentally different from previous versions,
