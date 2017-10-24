@@ -210,7 +210,7 @@ first install it through pip as:
 ```
 pip install django-rest-swagger==2.1.1
 ```
-**Note: Installing the correct version is very important.**
+**Note: Installing the correct version is very important.(This one works best with djangorestframework==3.5.3)**
 
 Add it into the `demo/settings.py` as:
 
@@ -345,26 +345,27 @@ class SwaggerSchemaView(APIView):
         return Response(schema)
 ```
 
-###### CustomSchemaGenerator Details:
-This class overrides the default DRF SchemaGenerator so that it first 
+> **exclude_from_schema = True** removes the swagger view from schema.
+
+> **CustomSchemaGenerator**
+ class overrides the default DRF SchemaGenerator so that it first 
 checks if the view has `.__doc__` inside it, if available it uses this YAML
 to make parameter fields, otherwise it looks for serializers.
-
 So in this way we acheive the functionality of Django Rest Swagger (version 1)
 which supported YAML docstrings as well.
 
-###### SwaggerSchemaView Details:
-The view made for swagger, which calls CustomSchemaGenerator
+> **SwaggerSchemaView**
+is the view made for swagger, which calls CustomSchemaGenerator
 to create the schema instead of default SchemaGenerator.
 
 
-You ll need to install yaml as:
+Now, You ll need to install yaml as:
 
 ```
 pip install PyYAML
 ```
 
-Now change `demo/urls.py` to point swagger url to this SwaggerSchemaView as:
+Next change `demo/urls.py` to point swagger url to this SwaggerSchemaView as:
 
 ```cython
 from .swagger_schema import SwaggerSchemaView
@@ -375,6 +376,8 @@ urlpatterns = [
     url(r'^swagger/', SwaggerSchemaView.as_view()),
 ]
 ```
+
+###### Defining parameters in FBV using YAML:
 
 Now add `__doc__` to the function based API by adding YAML
 into it, add following YAML to *save_medical* in `demo/fbv_demo/views.py` as:
@@ -403,7 +406,7 @@ parameters:
 ...
 ```
 
-Now *CustomSchemaGenerator* will be able to read this YAML
+> Now *CustomSchemaGenerator* will be able to read this YAML
 and create input parameters against it accordingly.
 
 
@@ -478,9 +481,7 @@ TEMPLATES = [
 ]
 ```
 
- Go to swagger url : http://127.0.0.1:8000/swagger/ 
-
->You ll be able to see custom BLACK header.
+>You ll be able to see custom BLACK header at http://127.0.0.1:8000/swagger/.
 
 #### Some add-ons that may help:
 
@@ -518,7 +519,9 @@ SWAGGER_SETTINGS = {
 }
 ```
 
-##### Customize location of parameters defined in DOCSTRING:
+You can use oauth2 for security. Details: [security definitions](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#security-definitions-object) .
+
+##### Customize format of parameters defined in DOCSTRING:
 
 You can customize YAML parameters, the most important is location
 that helps you with passing the data to API in different forms.
@@ -576,7 +579,8 @@ format `@permission_classes((IsAuthenticated, ))`.
 
 ## End Note:
 
-This repository is to help all those programmers facing issues
+This repository is intended to help those who are facing issues
 using `django-rest-swagger 2`. If you like this effort, please like and share this with others. 
-If you have any suggestions, comment here or approach me directly [@contacthaziq](https://twitter.com/contacthaziq) . 
+If you have any suggestions, comment here or approach me on [twitter](https://twitter.com/contacthaziq) 
+or send me an [email](mailto:m_haziq@outlook.com) to discuss in person. 
 I would love to hear from you.
