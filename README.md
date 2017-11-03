@@ -260,7 +260,7 @@ In order to acheive these functionalities, we ll go for its advance usage.
 ### Advance Usage:
 For finer control and to make swagger more customizable
 we write swagger schema view manually and to document parameters 
-for function based views, we override SchameGenerator of `rest_framework`
+for function based views, we override SchemaGenerator of `rest_framework`
 which is used by `django-rest-swagger` (version 2) to generate documentation.
 
 Create a file `demo/swagger_schema.py` and add following code to it:
