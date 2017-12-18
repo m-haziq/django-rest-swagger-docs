@@ -1,4 +1,5 @@
 # Comprehensive approach to django-rest-swagger 2 using both FBV and CBV
+![main-demo](https://i.imgur.com/GgHxcHt.gif)
 
 This project provides a beginner's guide to django rest swagger 2 with
 function based views as well as class based views. It provides  building the 
