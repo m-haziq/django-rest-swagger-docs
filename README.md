@@ -618,11 +618,15 @@ format `@permission_classes((IsAuthenticated, ))`.
 - ![swagger-error](https://i.imgur.com/oBfXWVq.png) *schemaValidationMessages	message:"Can't read from file http://0.0.0.0:8000/swagger/?format=openapi* : This error is rendered
 because you schema validation is enabled in swagger settings but your server is not accessible from external network(which swagger.io 
 tries to access for validation purpose). Try running your server with `python manage.py runserver 0.0.0.0:8000 --insecure` and in your settings.py 
-add `ALLOWED_HOSTS = ['*']` . You wont get this error while accessing server from external network now. Success in validation shows: ![swagger-success](https://i.imgur.com/UwuUwIZ.png)
+add `ALLOWED_HOSTS = ['*']` . You wont get this error while accessing server from external network now. 
+
+    Success in validation would show: ![swagger-success](https://i.imgur.com/UwuUwIZ.png)
 
 - ![swagger-error](https://i.imgur.com/oBfXWVq.png) *schemaValidationMessages message: "instance type () does not match any allowed primitive* : This error means that your schema json does not validated
 by online.swagger.io/validator. You can disable validation by setting `"VALIDATION_URL" : None` in swagger settings or to fix the issue you can validate 
-your schema better manually by pasting on [https://editor.swagger.io/](https://editor.swagger.io/).  Success in validation shows: ![swagger-success](https://i.imgur.com/UwuUwIZ.png)
+your schema better manually by pasting on [https://editor.swagger.io/](https://editor.swagger.io/).  
+
+    Success in validation would show: ![swagger-success](https://i.imgur.com/UwuUwIZ.png)
 
 ## End Note:
 
