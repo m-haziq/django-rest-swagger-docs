@@ -524,6 +524,41 @@ SWAGGER_SETTINGS = {
 
 You can use oauth2 for security. Details: [security definitions](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#security-definitions-object) .
 
+###### *DJANGO LOGIN* Button:
+
+You can also use Django Login button to login. It uses django admin panel
+for authentication. In order to make it run correctly you must set *LOGIN_URL* 
+and *LOGOUT_URL* in swagger settings. For example if you have rest_framework's 
+login mechanism, you can set:
+
+```cython
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': True,
+    'LOGIN_URL': 'rest_framework:login',
+    'LOGOUT_URL': 'rest_framework:logout',
+}
+```
+
+If you want to disable this button just set *USE_SESSION_AUTH* to *False*.
+
+##### VALIDATION_URL:
+
+A schema json is generated against APIs which you may like to get validated by [swagger.io](swagger.io). 
+Its value can be set to any local deployment of validator. By default it is set to:
+[https://online.swagger.io/validator/](https://online.swagger.io/validator/). Set it to *None* to not validate
+your schema. 
+
+```cython
+SWAGGER_SETTINGS = {
+    ...
+    
+    'VALIDATOR_URL': None,
+}
+```
+
+> Additionally you can also validate your schema manually by copying your schema json to 
+[https://editor.swagger.io/](https://editor.swagger.io/).
+
 ##### Customize format of parameters defined in DOCSTRING:
 
 You can customize YAML parameters, the most important is location
@@ -579,6 +614,15 @@ format `@permission_classes((IsAuthenticated, ))`.
     </div>
 {% endblock %}
 ```
+
+- ![swagger-error](https://i.imgur.com/oBfXWVq.png) *schemaValidationMessages	message:"Can't read from file http://0.0.0.0:8000/swagger/?format=openapi* : This error is rendered
+because you schema validation is enabled in swagger settings but your server is not accessible from external network(which swagger.io 
+tries to access for validation purpose). Try running your server with `python manage.py runserver 0.0.0.0:8000 --insecure` and in your settings.py 
+add `ALLOWED_HOSTS = ['*']` . You wont get this error while accessing server from external network now. Success in validation shows: ![swagger-success](https://i.imgur.com/UwuUwIZ.png)
+
+- ![swagger-error](https://i.imgur.com/oBfXWVq.png) *schemaValidationMessages message: "instance type () does not match any allowed primitive* : This error means that your schema json does not validated
+by online.swagger.io/validator. You can disable validation by setting `"VALIDATION_URL" : None` in swagger settings or to fix the issue you can validate 
+your schema better manually by pasting on [https://editor.swagger.io/](https://editor.swagger.io/).  Success in validation shows: ![swagger-success](https://i.imgur.com/UwuUwIZ.png)
 
 ## End Note:
 

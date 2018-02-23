@@ -26,7 +26,7 @@ SECRET_KEY = '6kl(fh*u9&q!g!q9zdbhfnkka)c!!79_0*qwe8neuwqovbwd8g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -57,11 +57,20 @@ REST_FRAMEWORK = {
 
 
 SWAGGER_SETTINGS = {
+    # For using django admin panel for authentication
+    'USE_SESSION_AUTH': True,
+    'LOGIN_URL': 'rest_framework:login',
+    'LOGOUT_URL': 'rest_framework:logout',
+
+    # For using other mechanisms for authentication ('basic' uses username/password)
     'SECURITY_DEFINITIONS': {
         'basic': {
             'type': 'basic',
-        }
+        },
     },
+
+    # For validating your swagger schema(setting None to not validate)
+    'VALIDATOR_URL': None,
 }
 
 
