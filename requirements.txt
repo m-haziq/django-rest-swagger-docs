@@ -15,4 +15,4 @@ PyYAML==3.12
 requests==2.18.4
 simplejson==3.11.1
 uritemplate==3.0.0
-urllib3==1.22
+urllib3==1.26.5
